@@ -1,17 +1,74 @@
 ---
 import Layout from '../layouts/Base.astro';
+import AboutExperience from '../components/AboutExperience.astro'
+import csueblogo from "../assets/csueastbay_logo.jpeg"
+import canaralogo from "../assets/canarahsbclogo.jpeg"
+import wozartlogo from "../assets/wozart_logo.jpeg"
+import stealthlogo from "../assets/stealth.png"
+const experiences = [
+	{
+		"dates": "January 2024 · Present",
+		"role": "Teaching Associate",
+		"company": "California State University - East Bay",
+		"description": ["Mentored 30+ students providing one-on-one assistance and conducted lab sessions to teach  Python programming."
+			,"Design and Evaluate assignments."],
+		"logo": csueblogo
+	},
+	{
+		"dates": "February 2023 · August 2023",
+		"role": "Research Assistant",
+		"company": "California State University - East Bay",
+		"description": ["Designed and optimized machine learning models for real-time object detection and tracking adding swarm functionality to existing programmable drones. Utilized data pre-processing, transfer learning and ensemble methods to leverage pre-trained models."
+		,"Led the development team of a Google Forms AppScript Application for the Drone Lab participants to assign roles based on tests conducted in google forms and get certain forms singed without manual intervention."
+		,"Utilized Adobe Forms API to integrate form signing from students after they pass the test. Also, leveraged multiple google apis to upload the signed forms to google drive, update the data into google sheets and sending a notification to drone lab coordinator."
+		],
+		"logo": csueblogo
+	},
+	{
+		"dates": "February 2022 · August 2022",
+		"role": "Software Engineer",
+		"company": "Canara HSBC Life",
+		"description": ["Developed data pipelines and REST api’s for Canara HSBC Life application with 100,000 users."
+		," Developed, tested and deployed a robust connector framework for Apache Kafka from scratch handling over 50 different streams with an easily configurable JSON interface leading to reduction of development time by 50%. Deployed on GCP Cloud Functions."
+	,"Successfully architected and implemented a highly scalable notification system which batch processes millions of records from firebase and sends notifications to end-users using firebase notifications."
+	,"Led the development of PDF generation (templates) and send API which efficiently delivered service request acknowledgements and updates to end users through email, enhancing communication and customer satisfaction."
+	,"Authored Cron jobs using Bash and Python to automated backup of generated PDF's accordingly."
+	,"Built Jenkins pipeline to deploy Flutter application from bitbucket into the google play store."],
+		"logo": canaralogo
+	},
+	{
+		"dates": "May 2021 · August 2021",
+		"role": "Software Engineer",
+		"company": "Freelance",
+		"description": ["Designed and Implemented a concurrent program to accept multiple camera feeds using RTSP protocol and save the feeds locally.",
+			"Utilized OpenCV to detect movement in the feed in order to store the parts containing movement in different folders w.r.t timestamps.",
+			"Developed scripts to sync all the video files containing movement into cloud storage."
+		],
+		"logo": stealthlogo
+	},
+	{
+		"dates": "February 2021 · April 2021 ",
+		"role": "Software Engineer Intern",
+		"company": "Wozart",
+		"description": ["Developed AWS lambda functions with IoT Core managing Alexa-support and Samsung Smart-things backend functions."
+		,"Debugged Geo-location triggers in DynamoDB Streams. Played an integral role in developing and deploying next version of Alexa-support backend on API Gateway which includes support for additional IoT devices."
+		,"Developed test bench to migrate all the mobile applications from AuthO to Amazon Cognito."],
+		"logo": wozartlogo
+	}
+]
+
 ---
 
 <Layout
 	title="About Me"
-	description="Lorem ipsum dolor sit amet"
+	description="Professional Me"
 	image="/blog-placeholder-about.jpg"
 >
-	<h1 class="title">About</h1>
+	<h1 class="title">About
+	</h1>
 	<p>
-		Hi, I'm a Astro theme. I'm particularly great for starting a blog or a 
-		portfolio. 
-		<div>
+		Hi, I'm Vemuri Venkat Rohit, A Software Engineer with a Masters degree in Computer Science.
+		<!-- <div>
 			I was based on two other themes:
 			<a 
 				class="cody-link" 
@@ -26,30 +83,57 @@ import Layout from '../layouts/Base.astro';
 				rel="noopener noreferrer"
 				href="https://risotto.joeroe.io"
 			>Risotto</a>.
-		</div>
+		</div> -->
 	</p>
 
-	<h2 class="title mt-4">Here are my built-in features:</h2>
-	<ul class="list-inside list-disc">
-		<li>Looks great on any device</li>
-		<li>Fully Responsive</li>
-		<li>Comes light and dark mode</li>
-		<li>Easy to customize and add content</li>
-		<li>Built with tailwindcss</li>
-		<li>Pin posts and projects</li>
-	</ul>
+	<h2 class="title mt-4">Experience:</h2>
+	<div class="px-10 py-1">
+		{
+		  experiences.map((experience, loop) => {
+			return (
+			  <>
+				{loop in [0,1,2,3]? (
+				  <div class="pb-10 border-l border-gray-200 dark:border-neutral-700">
+					<AboutExperience
+					  dates={experience.dates}
+					  role={experience.role}
+					  company={experience.company}
+					  description={experience.description}
+					  logo={experience.logo}
+					/>
+				  </div>
+				) : (
+				  <AboutExperience
+					dates={experience.dates}
+					role={experience.role}
+					company={experience.company}
+					description={experience.description}
+					logo={experience.logo}
+				  />
+				)}
+			  </>
+			)
+		  })
+		}
+	  </div>
+	<h2 class="title mt-4">Projects:</h2>
 	<p class="mt-4">
-		Clone or fork my 
+		View all my cool projects at my
 		<a
 			class="cody-link inline-block"
-			href="https://github.com/kirontoo/astro-theme-cody"
+			href="https://github.com/vvrm"
 			target="_blank"
 			rel="noopener noreferrer"
 			aria-label="github repository"
 		>
-			repo
+			GitHub
 		</a>
-		if you like me!
 	</p>
+
 </Layout>
 
+<!-- <style>
+	/* span{
+		background-color: #E49BFF;
+	} */
+</style> -->
